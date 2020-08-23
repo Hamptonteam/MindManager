@@ -9,7 +9,7 @@ from kivymd.uix.button import MDFlatButton
 from kivymd.uix.dialog import MDDialog
 import random
 from kivymd.uix.picker import MDDatePicker
-from kivymd.uix.list import MDList, ThreeLineListItem
+from kivymd.uix.list import MDList, TwoLineListItem
 
 import calendar
 Window.size = (300, 500)
@@ -85,6 +85,8 @@ class EduApp(MDApp):
             return 30
         else:
             return 29
+
+    ### Whole month crap
     def checkDate(self,days,months,years):
         MDDatePicker(
             callback=self.get_date,
@@ -126,12 +128,11 @@ class EduApp(MDApp):
                 yearsAway = float(years) - float(MDDatePicker.today.year)
                 print(yearsAway)
         return str(monthsAway), str(daysAway), str(yearsAway)
-    def addListItem(self,list,item1,item2,item3):
-        dates = ThreeLineListItem(text=item1, secondary_text = item2, tertiary_text= item3)
+
+    ### Adds items to the list
+    def addListItem(self,list,item1,item2):
+        dates = TwoLineListItem(text=item1, secondary_text = item2)
         list.add_widget(dates)
-    def removeListItem(self,list):
-        for dates in list.children:
-            list.remove_widget(dates)
 
 
 

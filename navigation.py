@@ -6,7 +6,7 @@ navigation_helper = """
         BoxLayout:
             orientation: 'vertical'
             MDLabel:
-                text: 'Stress Tabs'
+                text: 'Education Tabs'
                 halign: 'center'
                 font_style: 'Subtitle1'
                 size_hint_y: None
@@ -37,7 +37,7 @@ navigation_helper = """
                         root.nav_drawer.set_state("close")
                         root.screen_manager.current = "stress"
                 OneLineListItem:
-                    text: "Calendar"
+                    text: "Assignment Planner"
                     on_release:
                         root.nav_drawer.set_state("close")
                         root.screen_manager.current = "cal"
@@ -217,16 +217,10 @@ Screen:
             
             Screen:
                 name: 'cal'
-                
-                ScrollView:
-                    BoxLayout:
-                        MDList:
-                            id: myList
-                            pos_hint: {"center_x":0.5, "center_y":.5}
-                            ScrollView:
+            
                 
                 MDLabel:
-                    text: "Calendar"
+                    text: "Upcoming Assignments"
                     halign: "center"
                     pos_hint: {"center_x":0.5, "center_y":0.80}
                     font_style: 'H4'
@@ -237,7 +231,8 @@ Screen:
                     halign: 'center'
                     font_style: 'H6'
                 MDTextField:
-                    text: "DD"
+                    hint_text: "MM"
+                    required: True
                     id: userMonth
                     pos_hint: {"center_x":0.3, "center_y":0.20}
                     size_hint_x: None
@@ -247,7 +242,8 @@ Screen:
                     pos_hint: {"center_x":.9, "center_y":0.20}
                     
                 MDTextField:
-                    text: "MM"
+                    hint_text: "DD"
+                    required: True
                     id: userDay
                     pos_hint: {"center_x":0.5, "center_y":0.20}
                     size_hint_x: None
@@ -257,13 +253,15 @@ Screen:
                     pos_hint: {"center_x":1.1, "center_y":0.20}
                     
                 MDTextField:
-                    text: "YYYY"
+                    hint_text: "YYYY"
+                    required: True
                     id: userYear
                     pos_hint: {"center_x":0.7, "center_y":0.20}
                     size_hint_x: None
                     width:40
                 MDTextField:
-                    text: "assignment"
+                    hint_text: "Assignment"
+                    required: True
                     id: assignment
                     pos_hint: {"center_x":0.5, "center_y":0.30}
                     size_hint_x: None
@@ -273,7 +271,15 @@ Screen:
                     text: "Set Date"
                     pos_hint: {"center_x":0.5, "center_y":0.10}
                     on_release:
-                        app.addListItem(myList,assignment.text, userMonth.text + "/" + userDay.text+ "/" +userYear.text, "hello World")
+                        app.addListItem(myList,assignment.text, userMonth.text + "/" + userDay.text+ "/" +userYear.text)
+                ScrollView:
+                    pos_hint: {"center_x":0.5, "center_y":0.55}
+                    size_hint: (1, .4)
+                    max: 3
+                    BoxLayout:
+                        MDList:
+                            id: myList
+                            pos_hint: {"center_x":0.5, "center_y":0.4}
                         
                         
                         
